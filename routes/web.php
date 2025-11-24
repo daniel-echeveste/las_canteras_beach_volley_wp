@@ -17,7 +17,7 @@ use App\Http\Controllers\MatchController;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('WelcomeTest', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -25,7 +25,6 @@ Route::get('/', function () {
     ]);
 });
 
-// Route::get('/', [MatchController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
