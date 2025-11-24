@@ -1,7 +1,5 @@
 RewriteEngine on
-RewriteCond %{HTTP_HOST} 
-^lascanterasbeachvolley.com$ [NC,OR]
-RewriteCond %{HTTP_HOST} 
-^www.lascanterasbeachvolley.com$
+RewriteCond %{HTTP_HOST} ^lascanterasbeachvolley.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.lascanterasbeachvolley.com$
 RewriteCond %{REQUEST_URI} !^/newfolder/
 RewriteRule ^(.*)$ /newfolder/$1 [L]
