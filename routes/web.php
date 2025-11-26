@@ -69,6 +69,10 @@ Route::get('/webgl/exp5', function () {
     return Inertia::render('WebGL/Exp5_AbstractEnergy/Exp5');
 })->name('webgl.exp5');
 
+Route::get('/webgl/exp6', function () {
+    return Inertia::render('WebGL/Exp6_BeachVolley/Exp6');
+})->name('webgl.exp6');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

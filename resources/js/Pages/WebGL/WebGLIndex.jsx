@@ -34,6 +34,12 @@ export default function WebGLIndex() {
             href: "/webgl/exp5",
             color: "bg-pink-500",
         },
+        {
+            title: "Exp 6: Torneo Playa",
+            description: "8 canchas con partidos simultáneos en la playa.",
+            href: "/webgl/exp6",
+            color: "bg-teal-500",
+        },
     ];
 
     return (

@@ -20,8 +20,16 @@ export default function Navbar() {
         <header className="bg-white/80 backdrop-blur-sm fixed w-full top-0 left-0 shadow-md z-40">
             <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
                 {/* Logo */}
-                <Link href="/" className="text-2xl font-extrabold text-[#1CA9C9]">
-                    Las Canteras Vóley
+                <Link href="/" className="flex items-center gap-3">
+                    <img
+                        src="/logo.jpg"
+                        alt="Las Canteras Vóley"
+                        className="h-12 w-12 object-contain rounded-full"
+                        style={{ mixBlendMode: 'multiply' }}
+                    />
+                    <span className="text-2xl font-extrabold text-[#1CA9C9] hidden sm:block">
+                        Las Canteras Beach Volley
+                    </span>
                 </Link>
 
                 {/* Desktop Menu */}

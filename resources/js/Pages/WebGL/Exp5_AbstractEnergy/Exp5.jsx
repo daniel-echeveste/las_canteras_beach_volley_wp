@@ -31,7 +31,6 @@ export default function Exp5() {
                     <ambientLight intensity={0.5} />
                     <spotLight position={[10, 10, 10]} angle={0.3} penumbra={1} intensity={2} color="#ff0055" />
                     <pointLight position={[-10, -10, -10]} intensity={2} color="#00ffff" />
-
                     <EnergyShape position={[-3, 0, 0]} color="#1CA9C9" speed={1} />
                     <EnergyShape position={[0, 0, 0]} color="#FFD369" speed={0.5} />
                     <EnergyShape position={[3, 0, 0]} color="#ff6b6b" speed={0.8} />
