@@ -4,17 +4,27 @@ import { Link } from "@inertiajs/react";
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const navLinks = [
-        { name: "Inicio", href: "/" },
-        { name: "Actividades", href: "/#actividades" },
-        { name: "Comunidad", href: "/#comunidad" },
-        { name: "Blog", href: "/blog" },
-        { name: "Clubes", href: "/clubes-voleibol" },
-        { name: "Liga", href: "/liga-autonomica" },
-        { name: "Top Players", href: "/top-players" },
-        { name: "Webcams", href: "/webcams" },
-        { name: "Experiencias 3D", href: "/webgl" },
+    // Check if we're in development (localhost or .test domain)
+    const isDevelopment = window.location.hostname === 'localhost' ||
+        window.location.hostname.includes('.test') ||
+        window.location.hostname === '127.0.0.1';
+
+    const allNavLinks = [
+        { name: "Inicio", href: "/", devOnly: true },
+        { name: "Actividades", href: "/#actividades", devOnly: true },
+        { name: "Comunidad", href: "/#comunidad", devOnly: true },
+        { name: "Blog", href: "/blog", devOnly: true },
+        { name: "Clubes", href: "/clubes-voleibol", devOnly: true },
+        { name: "Liga", href: "/liga-autonomica", devOnly: false },
+        { name: "Ranking", href: "/ranking", devOnly: false },
+        { name: "Webcams", href: "/webcams", devOnly: true },
+        { name: "3D ", href: "/webgl", devOnly: true },
     ];
+
+    // Filter links based on environment
+    const navLinks = isDevelopment
+        ? allNavLinks
+        : allNavLinks.filter(link => !link.devOnly);
 
     return (
         <header className="bg-white/80 backdrop-blur-sm fixed w-full top-0 left-0 shadow-md z-40">

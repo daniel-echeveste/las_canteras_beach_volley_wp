@@ -1,11 +1,13 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Sky, Plane } from "@react-three/drei";
+import { OrbitControls, Plane } from "@react-three/drei";
 import Navbar from "@/Components/Navbar";
 import { Head } from "@inertiajs/react";
 import Ocean from "../BeachComponents/ocean";
 import Sand from "../BeachComponents/Sand";
 import Courts from "../BeachComponents/Courts";
+import SkyEnvironment from "../BeachComponents/SkyEnvironment";
+import Avenue from "../BeachComponents/Avenue";
 
 export default function Exp6() {
     return (
@@ -13,19 +15,9 @@ export default function Exp6() {
             <Head title="Exp 6: Torneo Playa" />
             <div className="h-screen w-full bg-blue-200">
                 <Navbar />
-                <Canvas shadows camera={{ position: [0, 30, 50], fov: 50 }}>
-                    <Sky sunPosition={[100, 20, 100]} turbidity={0.5} rayleigh={0.5} />
-                    <ambientLight intensity={0.6} />
-                    <directionalLight
-                        position={[50, 100, 50]}
-                        intensity={1.5}
-                        castShadow
-                        shadow-mapSize={[2048, 2048]}
-                        shadow-camera-left={-50}
-                        shadow-camera-right={50}
-                        shadow-camera-top={50}
-                        shadow-camera-bottom={-50}
-                    />
+                {/* jugar con el fov , efectos chullos, probar 100 desde cerca a las redes */}
+                <Canvas shadows camera={{ position: [0, 15, 50], fov: 75 }}>
+                    <SkyEnvironment preset="real-time" />
 
                     {/* Main Sand Beach */}
                     <Sand />
@@ -33,6 +25,7 @@ export default function Exp6() {
                     {/* Ocean - Placed at Z = -60 (North of courts) */}
                     <Ocean
                         position={[0, 0, -100]}
+                        args={[200, 100, 64, 64]}
                         color1="#006994"
                         color2="#003380"
                     />
@@ -45,13 +38,8 @@ export default function Exp6() {
                     >
                         <meshStandardMaterial color="#e0f7fa" opacity={0.8} transparent />
                     </Plane>
-                    <Plane
-                        args={[500, 20]}
-                        position={[0, 0.1, 58]}
-                        rotation={[-Math.PI / 2, 0, 0]}
-                    >
-                        <meshStandardMaterial color="red" opacity={0.8} transparent />
-                    </Plane>
+
+                    <Avenue position={[0, 0.1, 58]} />
 
                     <Courts />
 

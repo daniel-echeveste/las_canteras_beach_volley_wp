@@ -63,21 +63,21 @@ function Court({ position }) {
             </mesh>
 
             {/* Net */}
-            <mesh position={[0, 1.2, 0]} castShadow receiveShadow>
-                <boxGeometry args={[8.5, 2.4, 0.1]} />
+            <mesh position={[0, 1.7, 0]} castShadow receiveShadow>
+                <boxGeometry args={[8.5, 1.4, 0.1]} />
                 <meshStandardMaterial color="black" opacity={0.3} transparent />
             </mesh>
             <mesh position={[0, 2.4, 0]} >
                 <boxGeometry args={[8.5, 0.1, 0.1]} />
-                <meshStandardMaterial color="white" />
+                <meshStandardMaterial color="yellow" />
             </mesh>
             <mesh position={[4.25, 1.2, 0]} >
                 <cylinderGeometry args={[0.05, 0.05, 2.4]} />
-                <meshStandardMaterial color="gray" />
+                <meshStandardMaterial color="yellow" />
             </mesh>
             <mesh position={[-4.25, 1.2, 0]} >
                 <cylinderGeometry args={[0.05, 0.05, 2.4]} />
-                <meshStandardMaterial color="gray" />
+                <meshStandardMaterial color="yellow" />
             </mesh>
 
             {/* Players Side A (Z < 0) - "North" side */}
