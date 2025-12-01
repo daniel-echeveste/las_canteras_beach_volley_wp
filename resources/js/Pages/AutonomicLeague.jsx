@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Head } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
 import ScheduleTable from "@/Components/ScheduleTable";
 
 export default function AutonomicLeague() {
-    const schedule = [
+    const [isFemale, setIsFemale] = useState(false);
+
+    const scheduleMale = [
         // Jornada 1
         { jornada: 1, fecha: "29/11/2025", hora: "", local: "ELITEFIT CANARIAS", visitante: "BRAVEHEART GC", cancha: "Canteras", resultado: "0-3" },
         { jornada: 1, fecha: "29/11/2025", hora: "", local: "NET 7 BLACKBOARD", visitante: "CANACANTE", cancha: "Alcaravaneras", resultado: "1-2" },
@@ -77,18 +79,63 @@ export default function AutonomicLeague() {
         { jornada: 14, fecha: "11/04/2026", hora: "", local: "ELITEFIT CANARIAS", visitante: "CANACANTE", cancha: "", resultado: "" },
     ];
 
+    const scheduleFemale = [
+        // Jornada 1
+        { jornada: 1, fecha: "29/11/2025", hora: "", local: "DESCANSA", visitante: "BRAVEHEART GC", cancha: "", resultado: "" },
+        { jornada: 1, fecha: "29/11/2025", hora: "", local: "CD SIDEOUT", visitante: "ICOREN", cancha: "", resultado: "" },
+        // Jornada 2
+        { jornada: 2, fecha: "13/12/2025", hora: "", local: "DESCANSA", visitante: "BRAVEHEART GC", cancha: "", resultado: "" },
+        { jornada: 2, fecha: "13/12/2025", hora: "", local: "VOLEY MAXORATA", visitante: "ICOREN", cancha: "", resultado: "" },
+        // Jornada 3
+        { jornada: 3, fecha: "27/12/2025", hora: "", local: "NET 7 BLACKBOARD", visitante: "CD SIDEOUT", cancha: "Alcaravaneras", resultado: "" },
+        // Jornada 4
+        { jornada: 4, fecha: "10/01/2026", hora: "", local: "BRAVEHEART GC", visitante: "VOLEY MAXORATA", cancha: "", resultado: "" },
+        { jornada: 4, fecha: "10/01/2026", hora: "", local: "CD SIDEOUT", visitante: "DESCANSA", cancha: "", resultado: "" },
+        // Jornada 5
+        { jornada: 5, fecha: "10/01/2026", hora: "", local: "ICOREN", visitante: "NET 7 BLACKBOARD", cancha: "", resultado: "" },
+        // Jornada 6
+        { jornada: 6, fecha: "03/01/2026", hora: "", local: "BRAVEHEART GC", visitante: "CD SIDEOUT", cancha: "", resultado: "" },
+        { jornada: 6, fecha: "03/01/2026", hora: "", local: "DESCANSA", visitante: "ICOREN", cancha: "", resultado: "" },
+        // Jornada 7 (2ª Vuelta starts)
+        { jornada: 7, fecha: "10/01/2026", hora: "", local: "BRAVEHEART GC", visitante: "DESCANSA", cancha: "", resultado: "" },
+        { jornada: 7, fecha: "10/01/2026", hora: "", local: "ICOREN", visitante: "CD SIDEOUT", cancha: "", resultado: "" },
+        // Jornada 8
+        { jornada: 8, fecha: "10/01/2026", hora: "", local: "BRAVEHEART GC", visitante: "DESCANSA", cancha: "", resultado: "" },
+        { jornada: 8, fecha: "10/01/2026", hora: "", local: "ICOREN", visitante: "VOLEY MAXORATA", cancha: "", resultado: "" },
+        // Jornada 9
+        { jornada: 9, fecha: "21/03/2026", hora: "", local: "NET 7 BLACKBOARD", visitante: "ICOREN", cancha: "", resultado: "" },
+        { jornada: 9, fecha: "21/03/2026", hora: "", local: "CD SIDEOUT", visitante: "NET 7 BLACKBOARD", cancha: "", resultado: "" },
+        // Jornada 10
+        { jornada: 10, fecha: "11/04/2026", hora: "", local: "VOLEY MAXORATA", visitante: "BRAVEHEART GC", cancha: "", resultado: "" },
+        { jornada: 10, fecha: "11/04/2026", hora: "", local: "DESCANSA", visitante: "CD SIDEOUT", cancha: "", resultado: "" },
+        { jornada: 10, fecha: "11/04/2026", hora: "", local: "ICOREN", visitante: "BRAVEHEART GC", cancha: "", resultado: "" },
+    ];
+
+    const currentSchedule = isFemale ? scheduleFemale : scheduleMale;
+    const leagueTitle = isFemale
+        ? "LIGA SEGUNDA DIVISIÓN NACIONAL VOLEY PLAYA FEMENINO 2025/2026"
+        : "LIGA SEGUNDA DIVISIÓN NACIONAL VOLEY PLAYA MASCULINO 2025/2026";
+
     return (
         <>
             <Head title="Liga Autonómica - Las Canteras Vóley" />
             <div className="min-h-screen bg-[#FFF8E8] text-gray-900 font-sans">
                 <Navbar />
                 <div className="pt-24 max-w-6xl mx-auto px-6 pb-12">
-                    <h1 className="text-4xl font-extrabold text-[#1CA9C9] mb-6">Liga Autonómica</h1>
+                    <div className="flex items-center gap-4 mb-6">
+                        <h1 className="text-4xl font-extrabold text-[#1CA9C9]">Liga Autonómica</h1>
+                        <button
+                            onClick={() => setIsFemale(!isFemale)}
+                            className="px-4 py-2 bg-[#1CA9C9] text-white rounded-lg font-semibold hover:bg-[#158BA8] transition-colors duration-200 shadow-md"
+                        >
+                            {isFemale ? "Ver Masculino" : "Ver Femenino"}
+                        </button>
+                    </div>
                     <p className="text-lg text-gray-700 mb-8">
-                        LIGA SEGUNDA DIVISIÓN NACIONAL VOLEY PLAYA MASCULINO 2025/2026
+                        {leagueTitle}
                     </p>
 
-                    <ScheduleTable schedule={schedule} />
+                    <ScheduleTable schedule={currentSchedule} />
                 </div>
             </div>
         </>
