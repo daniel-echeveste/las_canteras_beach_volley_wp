@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\MatchController; 
 use App\Http\Controllers\RankingController;
+use App\Http\Controllers\TournamentRegistrationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,8 +32,20 @@ Route::get('/liga-autonomica', function () {
 })->name('autonomic.league');
 
 Route::get('/blog', function () {
-    return Inertia::render('Blog');
+    $posts = \App\Models\Post::where('is_published', true)->latest()->get();
+    return Inertia::render('Blog', [
+        'posts' => $posts
+    ]);
 })->name('blog');
+
+Route::get('/blog/{slug}', function ($slug) {
+    $post = \App\Models\Post::where('slug', $slug)->where('is_published', true)->firstOrFail();
+    return Inertia::render('Post', [
+        'post' => $post
+    ]);
+})->name('blog.show');
+
+Route::post('/tournament-registration/{postId}', [TournamentRegistrationController::class, 'store'])->name('tournament.register');
 
 
 
@@ -87,6 +100,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Admin Routes
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
+    });
 });
 
 
