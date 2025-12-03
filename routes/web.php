@@ -38,6 +38,10 @@ Route::get('/blog', function () {
 
 Route::get('/ranking', [RankingController::class, 'index'])->name('ranking');
 
+Route::get('/forecast', function () {
+    return Inertia::render('Forecast');
+})->name('forecast');
+
 Route::get('/clubes-voleibol', function () {
     return Inertia::render('VolleyballClubs');
 })->name('volleyball.clubs');
